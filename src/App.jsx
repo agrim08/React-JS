@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import restaurantsList from "./restrauntList";
+import restaurantsList from "./Data/restrauntList";
+import HeaderComponent from "./components/Header";
+import Footer from "./components/Footer";
 
 /**
  * Header
@@ -19,44 +21,13 @@ import restaurantsList from "./restrauntList";
  * Footer
  *  -Links
  */
-//*! React.Fragment:- exported from react
-
-const Title = () => {
-  return (
-    <>
-      <a href="/">
-        <img
-          className="logo-image"
-          src="https://th.bing.com/th/id/OIP.o4JCypYF9DBCugMEw0B2ZQHaHa?w=209&h=209&c=7&r=0&o=5&dpr=1.5&pid=1.7"
-          alt="logo"
-        />
-      </a>
-    </>
-  );
-};
-
-const HeaderComponent = () => {
-  return (
-    <div className="header">
-      <Title />
-      <div className="nav-items">
-        <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-          <li>Cart</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
+//*React.Fragment:- exported from react
 
 const RestaurantCard = ({ name, cloudinaryImageId, cuisines, locality }) => {
   return (
     <div className="card">
       <img
-        src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}
-          `}
+        src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
       />
       <h4>{name}</h4>
       <h4>{cuisines.join(" ")}</h4>
@@ -78,10 +49,6 @@ const Body = () => {
   );
 };
 
-const Footer = () => {
-  return <h1>Footer</h1>;
-};
-
 const AppLayout = () => {
   return (
     <>
@@ -92,7 +59,7 @@ const AppLayout = () => {
   );
 };
 
-//Styling in jsx
+//*Styling in jsx
 /**
  ** const styleObj = {
  **backgroundColor: "red",
