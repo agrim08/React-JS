@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import restaurantsList from "../Data/restrauntList";
 import RestaurantCard from "./RestaurantCard";
 
 function filterData(searchTxt, restaurants) {
-  const filteredData = restaurants.filter((restaurant) =>
-    restaurant.info.name.includes(searchTxt)
+  const filteredData = restaurants?.filter((restaurant) =>
+    restaurant?.info?.name?.includes(searchTxt)
   );
   return filteredData;
 }
@@ -14,15 +14,29 @@ const Body = () => {
   const [searchTxt, setSearchText] = useState(""); //* to create state variable
   const [restaurants, setRestaurants] = useState(restaurantsList);
 
+  useEffect(() => {
+    //*API Call
+    getRestaurants();
+  }, []);
+
+  async function getRestaurants() {
+    const data = await fetch(
+      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65420&lng=77.23730&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+    );
+    const json = await data.json();
+
+    setRestaurants(
+      json?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
+        ?.restaurants
+    );
+  }
+
   const handleSearch = (event) => {
     event.preventDefault();
-    if (searchTxt === "") {
-      setRestaurants(restaurantsList);
-    } else {
-      const data = filterData(searchTxt, restaurantsList);
-      setRestaurants(data);
-    }
+    const data = filterData(searchTxt, restaurantsList);
+    setRestaurants(data);
   };
+  console.log(restaurants);
 
   return (
     <>
@@ -44,9 +58,9 @@ const Body = () => {
       </div>
 
       <div className="restraunt-lists">
-        {restaurants.map((restaurants) => {
+        {restaurants?.map((restaurant) => {
           return (
-            <RestaurantCard {...restaurants.info} key={restaurants.info.id} />
+            <RestaurantCard {...restaurant?.info} key={restaurant?.info?.id} />
           );
         })}
       </div>
