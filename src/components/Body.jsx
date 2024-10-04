@@ -2,16 +2,16 @@ import { useState, useEffect } from "react";
 import restaurantsList from "../Data/restrauntList";
 import RestaurantCard from "./RestaurantCard";
 
-function filterData(searchTxt, restaurants) {
+function filterData(searchText, restaurants) {
   const filteredData = restaurants?.filter((restaurant) =>
-    restaurant?.info?.name?.includes(searchTxt)
+    restaurant?.info?.name?.includes(searchText)
   );
   return filteredData;
 }
 
-const Body = () => {
-  //* searchTxt is a local state variable
-  const [searchTxt, setSearchText] = useState(""); //* to create state variable
+function Body() {
+  //* searchText is a local state variable
+  const [searchText, setSearchText] = useState(""); //* to create state variable
   const [restaurants, setRestaurants] = useState(restaurantsList);
 
   useEffect(() => {
@@ -32,10 +32,10 @@ const Body = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    const data = filterData(searchTxt, restaurantsList);
+    const data = filterData(searchText, restaurantsList);
     setRestaurants(data);
   };
-  console.log(restaurants);
+  // console.log(restaurants);
 
   return (
     <>
@@ -45,7 +45,7 @@ const Body = () => {
             type="text"
             className="search-input"
             placeholder="Search"
-            value={searchTxt}
+            value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
             }}
@@ -65,6 +65,6 @@ const Body = () => {
       </div>
     </>
   );
-};
+}
 
 export default Body;
