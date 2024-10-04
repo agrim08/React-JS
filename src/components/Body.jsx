@@ -15,7 +15,6 @@ const Body = () => {
   const [restaurants, setRestaurants] = useState(restaurantsList);
 
   useEffect(() => {
-    //*API Call
     getRestaurants();
   }, []);
 
