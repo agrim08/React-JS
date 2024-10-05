@@ -1,9 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { ShimmerSimpleGallery } from "react-shimmer-effects";
 
 const filterData = (searchText, restaurants) => {
-  console.log("Search text:", searchText.toLowerCase());
   const filteredData = restaurants?.filter((restaurant) =>
     restaurant?.info?.name?.toLowerCase()?.includes(searchText.toLowerCase())
   );
@@ -25,6 +24,8 @@ function Body() {
     getRestaurants();
   }, []);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   async function getRestaurants() {
     try {
       const data = await fetch(
@@ -34,6 +35,7 @@ function Body() {
         throw new Error("Network response was not ok");
       }
       const jsonData = await data.json();
+      setIsLoading(false);
       setAllRestaurants(
         jsonData?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
           ?.restaurants
@@ -49,6 +51,15 @@ function Body() {
   }
   if (error) {
     return <div>Error: {error}</div>;
+  }
+  if (isLoading) {
+    return (
+      <>
+        <ShimmerSimpleGallery imageHeight={350} col={4} caption />
+        <ShimmerSimpleGallery card imageHeight={350} />
+        <ShimmerSimpleGallery card imageHeight={350} caption />
+      </>
+    );
   }
   //* console.log(true);
 
