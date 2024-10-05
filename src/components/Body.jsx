@@ -18,7 +18,7 @@ function Body() {
   const [searchText, setSearchText] = useState(""); //* to create state variable
   const [allRestaurants, setAllRestaurants] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     getRestaurants();
