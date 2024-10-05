@@ -19,12 +19,11 @@ function Body() {
   const [allRestaurants, setAllRestaurants] = useState("");
   const [filteredRestaurants, setFilteredRestaurants] = useState("");
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getRestaurants();
   }, []);
-
-  const [isLoading, setIsLoading] = useState(true);
 
   async function getRestaurants() {
     try {
@@ -107,5 +106,4 @@ function Body() {
     </>
   );
 }
-
 export default Body;
