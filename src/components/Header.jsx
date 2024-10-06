@@ -1,10 +1,6 @@
 import Title from "./Title";
 import { useState } from "../../node_modules/react";
-
-// const loggedInUser = () => {
-//   //*API return true if user is loggedIn else false
-//   return true;
-// };
+import { Link } from "react-router-dom";
 
 const HeaderComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,9 +9,15 @@ const HeaderComponent = () => {
       <Title />
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
+          <Link to="/">
+            <li>Home</li>
+          </Link>
+          <Link to="/about">
+            <li>About</li>
+          </Link>
+          <Link to="/contact">
+            <li>Contact</li>
+          </Link>
           <li>Cart</li>
         </ul>
       </div>

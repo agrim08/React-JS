@@ -1,6 +1,7 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
-import { ShimmerSimpleGallery } from "react-shimmer-effects";
+import Loader from "./Loader";
+import { Link } from "react-router-dom";
 
 const filterData = (searchText, restaurants) => {
   const filteredData = restaurants?.filter((restaurant) =>
@@ -8,16 +9,11 @@ const filterData = (searchText, restaurants) => {
   );
   return filteredData;
 };
-
-//* const myJSON = { a: "Ford", b: "BMW", c: "Fiat" };
-// const myArray = JSON.stringify(myJSON);
-// console.log(myArray);
-
 function Body() {
   //* searchText is a local state variable
   const [searchText, setSearchText] = useState(""); //* to create state variable
-  const [allRestaurants, setAllRestaurants] = useState("");
-  const [filteredRestaurants, setFilteredRestaurants] = useState("");
+  const [allRestaurants, setAllRestaurants] = useState([]);
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -34,31 +30,31 @@ function Body() {
         throw new Error("Network response was not ok");
       }
       const jsonData = await data.json();
-      setIsLoading(false);
-      setAllRestaurants(
-        jsonData?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants
-      );
-      setFilteredRestaurants(
-        jsonData?.data?.cards?.[4]?.card?.card?.gridElements?.infoWithStyle
-          ?.restaurants
-      );
-      console.log(jsonData);
-    } catch {
+      console.log("API Response:", jsonData); // Log the entire response
+
+      // Check if the expected data structure exists
+      const restaurants = jsonData?.data?.cards?.find(
+        (card) => card?.card?.card?.gridElements?.infoWithStyle?.restaurants
+      )?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+
+      if (restaurants && restaurants.length > 0) {
+        setAllRestaurants(restaurants);
+        setFilteredRestaurants(restaurants);
+      } else {
+        throw new Error("No restaurants found in the API response");
+      }
+    } catch (error) {
+      console.error("Error fetching restaurants:", error);
       setError(error.message);
+    } finally {
+      setIsLoading(false);
     }
   }
   if (error) {
     return <div>Error: {error}</div>;
   }
   if (isLoading) {
-    return (
-      <>
-        <ShimmerSimpleGallery imageHeight={350} col={4} caption />
-        <ShimmerSimpleGallery card imageHeight={350} />
-        <ShimmerSimpleGallery card imageHeight={350} caption />
-      </>
-    );
+    return <Loader />;
   }
   //* console.log(true);
 
@@ -67,19 +63,12 @@ function Body() {
     const data = filterData(searchText, allRestaurants);
     setFilteredRestaurants(data);
   }
-  //* console.log(restaurants);
-
-  //* early return
   if (!allRestaurants) return null;
 
   if (filteredRestaurants?.length === 0) return <h1>No restaurant found</h1>;
 
   return allRestaurants?.length === 0 ? (
-    <>
-      <ShimmerSimpleGallery imageHeight={350} col={4} caption />
-      <ShimmerSimpleGallery card imageHeight={350} />
-      <ShimmerSimpleGallery card imageHeight={350} caption />
-    </>
+    <Loader />
   ) : (
     <>
       <div className="search-container">
@@ -99,7 +88,12 @@ function Body() {
       <div className="restraunt-lists">
         {filteredRestaurants?.map((restaurant) => {
           return (
-            <RestaurantCard {...restaurant?.info} key={restaurant?.info?.id} />
+            <Link
+              to={`/restaurant/${restaurant?.info?.id}`}
+              key={restaurant?.info?.id}
+            >
+              <RestaurantCard {...restaurant?.info} />
+            </Link>
           );
         })}
       </div>

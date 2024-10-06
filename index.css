@@ -14,6 +14,12 @@
   display: flex;
 }
 
+body {
+  height: 100rem;
+  width: 100%;
+  overflow: hidden;
+}
+
 .nav-items ul li {
   padding: 10px;
 }
@@ -22,21 +28,43 @@
   width: 80px;
 }
 .card {
-  width: 400px;
-  height: 400px;
+  width: 200px;
+  height: auto;
   border: 1px solid black;
   padding: 10px;
   margin: 10px;
-  /* overflow: visible; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
 }
-.card img {
-  width: 100%;
+.card > img {
+  width: 100px;
   height: 100px;
 }
 .restraunt-lists {
   display: flex;
-  justify-content: space-evenly;
-}
-.restraunt-lists {
+  align-items: center;
   width: 100%;
+  overflow-x: scroll;
+}
+.restaurant-loader {
+  display: flex;
+  flex-wrap: wrap;
+}
+.shimmer-list {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.shimmer-card {
+  background: lightgray;
+  width: 200px;
+  height: 200px;
+  margin: 20px;
+}
+.menu-cards {
+  display: flex;
 }
