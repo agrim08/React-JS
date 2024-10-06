@@ -16,8 +16,8 @@
 
 body {
   height: 100rem;
-  width: 100%;
-  overflow: hidden;
+  width: auto;
+  overflow: scroll;
 }
 
 .nav-items ul li {
@@ -67,4 +67,12 @@ body {
 }
 .menu-cards {
   display: flex;
+}
+.about-loader {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  background: lightgray;
+  color: lightgray;
 }
