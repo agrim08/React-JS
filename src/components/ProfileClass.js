@@ -21,7 +21,6 @@ class Profile extends Component {
     };
     //*console.log(`Child- constructor ${this.props.name}`);
   }
-
   async componentDidMount() {
     try {
       const data = await fetch("https://api.github.com/users/agrim08");
@@ -34,7 +33,6 @@ class Profile extends Component {
             ...jsonData,
           },
         });
-        console.log(jsonData);
       }
     } catch (error) {
       console.log("No data found");
@@ -43,14 +41,17 @@ class Profile extends Component {
     }
     //* console.log(`Child- componentDidMount ${this.props.name}`);
   }
-
+  componentDidUpdate() {
+    console.log("Child componentDidUpdate ");
+  }
+  componentWillUnmount() {
+    console.log("Child componentWillUnmount ");
+  }
   render() {
-    console.log(this?.state?.userInfo?.name);
     const { isLoading } = this.state;
     if (isLoading) {
       return <AboutLoader />;
     }
-
     //* console.log(`Child- render ${this.props.name}`);
     //* const { count, count2 } = this.state;
     const { name, bio, avatar_url } = this?.state?.userInfo;

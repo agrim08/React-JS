@@ -1,8 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Profile = (props) => {
   const [count, setCount] = useState(0);
   const [count2, setCount2] = useState(1);
+
+  useEffect(() => {
+    return null;
+  }, []);
   return (
     <div>
       <h3>Functional Profile Page</h3>
