@@ -2,13 +2,9 @@ import { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Loader from "./Loader";
 import { Link } from "react-router-dom";
+import { filterData } from "../utils/Utils";
+import useOnline from "../utils/useOnline";
 
-const filterData = (searchText, restaurants) => {
-  const filteredData = restaurants?.filter((restaurant) =>
-    restaurant?.info?.name?.toLowerCase()?.includes(searchText.toLowerCase())
-  );
-  return filteredData;
-};
 function Body() {
   //* searchText is a local state variable
   const [searchText, setSearchText] = useState(""); //* to create state variable
@@ -50,13 +46,26 @@ function Body() {
       setIsLoading(false);
     }
   }
+
+  const online = useOnline();
+
+  if (!online) {
+    return (
+      <>
+        <div>📶 No Signal</div>
+        <h3>
+          ⚠️ Oops! It seems like the internet took a break. Please reconnect
+        </h3>
+      </>
+    );
+  }
+
   if (error) {
     return <div>Error: {error}</div>;
   }
   if (isLoading) {
     return <Loader />;
   }
-  //* console.log(true);
 
   function handleSearch(e) {
     e.preventDefault();

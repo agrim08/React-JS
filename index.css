@@ -15,7 +15,7 @@
 }
 
 body {
-  height: 100rem;
+  height: 100%;
   width: auto;
   overflow: scroll;
 }
@@ -75,4 +75,13 @@ body {
   flex-direction: column;
   background: lightgray;
   color: lightgray;
+}
+.footer {
+  position: static;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
 }

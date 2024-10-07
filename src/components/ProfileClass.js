@@ -41,10 +41,16 @@ class Profile extends Component {
     }
     //* console.log(`Child- componentDidMount ${this.props.name}`);
   }
-  componentDidUpdate() {
+  //* componentDidMount() {
+  //*   this.timer = setInterval(() => {
+  //*     console.log("Namaste Duniya");
+  //*   }, 1000);
+  //* }
+  componentDidUpdate(prevProps, prevState) {
     console.log("Child componentDidUpdate ");
   }
   componentWillUnmount() {
+    // clearInterval(this.timer);
     console.log("Child componentWillUnmount ");
   }
   render() {
