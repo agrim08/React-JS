@@ -80,9 +80,9 @@ function Body() {
     <Loader />
   ) : (
     <>
-      <div className="search-container p-5 bg-pink-100 shadow-md mb-4">
+      <div className="search-container p-5 bg-pink-100 shadow-md mb-4 mt-0">
         <input
-          className="shadow-pink-50"
+          className="shadow-purple-100 focus:bg-green-100 focus:border-pink-800 p-2 rounded-md"
           type="text"
           placeholder="Search"
           value={searchText}
@@ -91,14 +91,14 @@ function Body() {
           }}
         />
         <button
-          className="w-20 h-9 ml-2 p-2 bg-purple-600 text-white rounded-lg text-center"
+          className="w-20 h-9 ml-2 p-2 text-white rounded-lg bg-violet-500 hover:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
           type="submit"
           onClick={handleSearch}
         >
           Search
         </button>
       </div>
-      <div className="restraunt-lists">
+      <div className="flex flex-wrap">
         {filteredRestaurants?.map((restaurant) => {
           return (
             <Link
