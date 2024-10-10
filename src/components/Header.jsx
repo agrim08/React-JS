@@ -8,7 +8,7 @@ const HeaderComponent = () => {
   const isOnline = useOnline();
 
   return (
-    <div className="bg-pink-100 shadow-md sm:bg-blue-100">
+    <div className="bg-pink-100 shadow-md ">
       <div className="flex items-center justify-between">
         <div>
           <Title />

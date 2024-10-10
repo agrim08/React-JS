@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, StrictMode } from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComponent from "./components/Header";
 import Footer from "./components/Footer";
@@ -9,6 +9,7 @@ import RestaurantMenu from "./components/RestaurantsMenu";
 import Profile from "./components/Profile";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Loader";
+import useOnline from "./utils/useOnline";
 
 /**
  * Header
@@ -33,6 +34,18 @@ const Instamart = lazy(() => import("./components/Instamart"));
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
+  const online = useOnline();
+  if (!online) {
+    return (
+      <>
+        <div>📶 No Signal</div>
+        <h3>
+          ⚠️ Oops! It seems like the internet took a break. Please reconnect
+        </h3>
+      </>
+    );
+  }
+
   return (
     <>
       <HeaderComponent />

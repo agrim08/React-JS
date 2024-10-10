@@ -18,12 +18,11 @@ const RestaurantMenu = () => {
   // console.log(restaurantData);
 
   return (
-    <div className="menu-cards">
+    <div className="flex justify-between">
       <>
-        <div>
-          <h1>Restaurant Id: {resId}</h1>
-          <h2>{restaurantData?.data?.cards?.[2]?.card?.card?.info?.name}</h2>
+        <div className="flex">
           <img
+            className="h-80 w-80"
             src={
               ImageCdn +
               restaurantData?.data?.cards?.[2]?.card?.card?.info
@@ -31,23 +30,28 @@ const RestaurantMenu = () => {
             }
             alt=""
           />
-          <h3>
-            {restaurantData?.data?.cards?.[2]?.card?.card?.info?.areaName}
-          </h3>
-          <h3>{restaurantData?.data?.cards?.[2]?.card?.card?.info?.city}</h3>
-          <h3>
-            {restaurantData?.data?.cards?.[2]?.card?.card?.info?.avgRating}{" "}
-            stars
-          </h3>
-          <h3>
-            {
-              restaurantData?.data?.cards?.[2]?.card?.card?.info
-                ?.costForTwoMessage
-            }
-          </h3>
+          <div className="m-5">
+            <h1>Restaurant Id: {resId}</h1>
+            <h2>{restaurantData?.data?.cards?.[2]?.card?.card?.info?.name}</h2>
+
+            <h3>
+              {restaurantData?.data?.cards?.[2]?.card?.card?.info?.areaName}
+            </h3>
+            <h3>{restaurantData?.data?.cards?.[2]?.card?.card?.info?.city}</h3>
+            <h3>
+              {restaurantData?.data?.cards?.[2]?.card?.card?.info?.avgRating}{" "}
+              stars
+            </h3>
+            <h3>
+              {
+                restaurantData?.data?.cards?.[2]?.card?.card?.info
+                  ?.costForTwoMessage
+              }
+            </h3>
+          </div>
         </div>
         <div>
-          <h1>Menu</h1>
+          <h1 className="font-bold text-orange-400">Menu</h1>
           <ul>
             {restaurantData?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map(
               (item) =>
