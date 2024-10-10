@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import HeaderComponent from "./components/Header";
 import Footer from "./components/Footer";
 import Body from "./components/Body";
-// import About from "./components/About";
 import Error from "./components/Error";
 import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantsMenu";

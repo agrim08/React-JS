@@ -80,17 +80,21 @@ function Body() {
     <Loader />
   ) : (
     <>
-      <div className="search-container">
+      <div className="search-container p-5 bg-pink-100 shadow-md mb-4">
         <input
+          className="shadow-pink-50"
           type="text"
-          className="search-input"
           placeholder="Search"
           value={searchText}
           onChange={(e) => {
             setSearchText(e.target.value);
           }}
         />
-        <button className="search-btn" type="submit" onClick={handleSearch}>
+        <button
+          className="w-20 h-9 ml-2 p-2 bg-purple-600 text-white rounded-lg text-center"
+          type="submit"
+          onClick={handleSearch}
+        >
           Search
         </button>
       </div>
