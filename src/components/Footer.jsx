@@ -1,3 +1,6 @@
+// import { Link } from "react-router-dom";
+import Contact from "./Contact";
+
 const Footer = () => {
   return (
     <>
@@ -108,13 +111,8 @@ const Footer = () => {
                         Privacy Policy
                       </a>
                     </li>
-                    <li>
-                      <a
-                        className="text-black hover:text-blue font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/contact-us?ref=njs-profile"
-                      >
-                        Contact Us
-                      </a>
+                    <li className="text-black hover:text-blue font-semibold block pb-2 text-sm">
+                      <a href="">Contact Us</a>
                     </li>
                   </ul>
                 </div>
@@ -125,19 +123,7 @@ const Footer = () => {
           <div className="flex flex-wrap items-center md:justify-between justify-center">
             <div className="w-full md:w-4/12 px-4 mx-auto text-center">
               <div className="text-sm text-blue-500 font-semibold py-1">
-                Copyright © <span id="get-current-year">2021</span>
-                <a
-                  href="https://www.creative-tim.com/product/notus-js"
-                  className="text-blue-500 hover:text-gray-800"
-                  target="_blank"
-                />{" "}
-                Notus JS by
-                <div>
-                  <a
-                    href="https://www.creative-tim.com?ref=njs-profile"
-                    className="text-black hover:text-blue"
-                  />
-                </div>
+                Copyright © <span id="get-current-year">2024</span>
               </div>
             </div>
           </div>

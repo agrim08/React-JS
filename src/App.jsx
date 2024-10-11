@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, StrictMode } from "react";
+import React, { lazy, Suspense, StrictMode, useEffect, useState } from "react";
 import ReactDOM from "react-dom/client";
 import HeaderComponent from "./components/Header";
 import Footer from "./components/Footer";
@@ -10,6 +10,7 @@ import Profile from "./components/Profile";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Loader";
 import useOnline from "./utils/useOnline";
+import UserContext from "./utils/UserContext";
 
 /**
  * Header
@@ -34,6 +35,11 @@ const Instamart = lazy(() => import("./components/Instamart"));
 const About = lazy(() => import("./components/About"));
 
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name: "Agrim Gupta",
+    email: "user@gmail.com",
+  });
+
   const online = useOnline();
   if (!online) {
     return (
@@ -48,9 +54,16 @@ const AppLayout = () => {
 
   return (
     <>
-      <HeaderComponent />
-      <Outlet />
-      <Footer />
+      <UserContext.Provider
+        value={{
+          user: user,
+          setUser: setUser,
+        }}
+      >
+        <HeaderComponent />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
     </>
   );
 };

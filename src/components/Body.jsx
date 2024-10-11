@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Loader from "./Loader";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/Utils";
+import UserContext from "../utils/UserContext";
 
 function Body() {
   //* searchText is a local state variable
@@ -11,6 +12,7 @@ function Body() {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getRestaurants();
@@ -83,6 +85,16 @@ function Body() {
         >
           Search
         </button>
+        <input
+          type="text"
+          value={user.name}
+          onChange={(e) => {
+            setUser({
+              ...user,
+              name: e.target.value,
+            });
+          }}
+        />
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurants?.map((restaurant) => {

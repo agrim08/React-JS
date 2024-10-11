@@ -1,6 +1,7 @@
 import React from "react";
 import { Component } from "react";
 import AboutLoader from "./AboutLoader";
+import UserContext from "../utils/UserContext";
 
 class Profile extends Component {
   constructor(props) {
@@ -65,6 +66,13 @@ class Profile extends Component {
       <div>
         <h2>Name: {name}</h2>
         <h2>Bio: {bio}</h2>
+        <UserContext.Consumer>
+          {({ user }) => (
+            <h3 className="font-bold text-orange-500 p-2 m-2 text-2xl">
+              {user.name}
+            </h3>
+          )}
+        </UserContext.Consumer>
         <img src={avatar_url} />
         <>
           {/* <div>Count: {count}</div>
