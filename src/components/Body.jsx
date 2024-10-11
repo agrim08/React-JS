@@ -79,13 +79,14 @@ function Body() {
           }}
         />
         <button
-          className="w-20 h-9 ml-2 p-2 text-white rounded-lg bg-violet-500 hover:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
+          className="w-20 h-9 ml-2 p-2 text-white rounded-full bg-violet-500 hover:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
           type="submit"
           onClick={handleSearch}
         >
           Search
         </button>
         <input
+          className="text-gray-300 pl-3 text-sm h-9 border border-pink-300 rounded-full ml-5 mb-1 "
           type="text"
           value={user.name}
           onChange={(e) => {

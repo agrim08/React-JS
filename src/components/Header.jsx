@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import UserContext from "../utils/UserContext";
+import Login from "./Login";
 
 const HeaderComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -37,7 +38,13 @@ const HeaderComponent = () => {
               {isLoggedIn ? (
                 <button onClick={() => setIsLoggedIn(false)}>Logout</button>
               ) : (
-                <button onClick={() => setIsLoggedIn(true)}>Login</button>
+                <button
+                  onClick={() => {
+                    setIsLoggedIn(true);
+                  }}
+                >
+                  Login
+                </button>
               )}
             </li>
           </ul>
