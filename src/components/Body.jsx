@@ -96,6 +96,17 @@ function Body() {
             });
           }}
         />
+        <input
+          className="text-gray-300 pl-3 text-sm h-9 border border-pink-300 rounded-full ml-5 mb-1 "
+          type="text"
+          value={user.email}
+          onChange={(e) => {
+            setUser({
+              ...user,
+              email: e.target.value,
+            });
+          }}
+        />
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurants?.map((restaurant) => {

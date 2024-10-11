@@ -92,11 +92,6 @@ const appRouter = createBrowserRouter([
         ],
       },
       {
-        path: "/login",
-        element: <Login />,
-        errorElement: <Error />,
-      },
-      {
         path: "/contact",
         element: <Contact />,
         errorElement: <Error />,

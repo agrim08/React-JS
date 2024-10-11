@@ -12,6 +12,9 @@ const Title = () => {
       <h3 className="px-4 py-2 m-2 font-semibold text-orange-500">
         Welcome, {user.name} 😊
       </h3>
+      <h3 className="px-4 py-2 m-2 font-semibold text-black">
+        Your mail, {user.email}
+      </h3>
     </div>
   );
 };
