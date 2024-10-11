@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import UserContext from "../utils/UserContext";
 import Login from "./Login";
+import { createBrowserRouter } from "react-router-dom";
 
 const HeaderComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,7 +34,6 @@ const HeaderComponent = () => {
             <li>
               <a href="/">Cart</a>
             </li>
-
             <li className="justify-self-end">
               {isLoggedIn ? (
                 <button onClick={() => setIsLoggedIn(false)}>Logout</button>

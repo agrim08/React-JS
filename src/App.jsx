@@ -11,6 +11,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Loader";
 import useOnline from "./utils/useOnline";
 import UserContext from "./utils/UserContext";
+import Login from "./components/Login";
 
 /**
  * Header
@@ -89,6 +90,11 @@ const appRouter = createBrowserRouter([
             errorElement: <Error />,
           },
         ],
+      },
+      {
+        path: "/login",
+        element: <Login />,
+        errorElement: <Error />,
       },
       {
         path: "/contact",
