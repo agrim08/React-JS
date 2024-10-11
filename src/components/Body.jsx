@@ -75,6 +75,7 @@ function Body() {
           placeholder="Search"
           value={searchText}
           onChange={(e) => {
+            e.preventDefault();
             setSearchText(e.target.value);
           }}
         />
@@ -90,6 +91,7 @@ function Body() {
           type="text"
           value={user.name}
           onChange={(e) => {
+            e.preventDefault();
             setUser({
               ...user,
               name: e.target.value,
@@ -101,6 +103,7 @@ function Body() {
           type="text"
           value={user.email}
           onChange={(e) => {
+            e.preventDefault();
             setUser({
               ...user,
               email: e.target.value,

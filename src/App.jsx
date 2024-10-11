@@ -12,6 +12,8 @@ import Shimmer from "./components/Loader";
 import useOnline from "./utils/useOnline";
 import UserContext from "./utils/UserContext";
 import Login from "./components/Login";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 /**
  * Header
@@ -55,16 +57,18 @@ const AppLayout = () => {
 
   return (
     <>
-      <UserContext.Provider
-        value={{
-          user: user,
-          setUser: setUser,
-        }}
-      >
-        <HeaderComponent />
-        <Outlet />
-        <Footer />
-      </UserContext.Provider>
+      <Provider store={store}>
+        <UserContext.Provider
+          value={{
+            user: user,
+            setUser: setUser,
+          }}
+        >
+          <HeaderComponent />
+          <Outlet />
+          <Footer />
+        </UserContext.Provider>
+      </Provider>
     </>
   );
 };
