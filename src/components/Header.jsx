@@ -2,15 +2,15 @@ import Title from "./Title";
 import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
-import UserContext from "../utils/UserContext";
+// import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
-import Login from "./Login";
+// import Login from "./Login";
 import { createBrowserRouter } from "react-router-dom";
 
 const HeaderComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
-  const { user } = useContext(UserContext);
+  // const { user } = useContext(UserContext);
   const cartItems = useSelector((store) => store.cart.items);
   console.log(cartItems);
 

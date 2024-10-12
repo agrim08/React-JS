@@ -11,7 +11,7 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Loader";
 import useOnline from "./utils/useOnline";
 import UserContext from "./utils/UserContext";
-import Login from "./components/Login";
+// import Login from "./components/Login";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 
@@ -57,20 +57,18 @@ const AppLayout = () => {
   }
 
   return (
-    <>
-      <Provider store={store}>
-        <UserContext.Provider
-          value={{
-            user: user,
-            setUser: setUser,
-          }}
-        >
-          <HeaderComponent />
-          <Outlet />
-          <Footer />
-        </UserContext.Provider>
-      </Provider>
-    </>
+    <Provider store={store}>
+      <UserContext.Provider
+        value={{
+          user: user,
+          setUser: setUser,
+        }}
+      >
+        <HeaderComponent />
+        <Outlet />
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -121,12 +119,20 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
-        errorElement: <Error />,
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <Cart />x
+          </Suspense>
+        ),
+        // errorElement: <Error />,
       },
     ],
   },
 ]);
 
 const root = ReactDOM?.createRoot(document?.getElementById("root"));
-root.render(<RouterProvider router={appRouter} />);
+root.render(
+  <StrictMode>
+    <RouterProvider router={appRouter} />
+  </StrictMode>
+);

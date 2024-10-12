@@ -1,5 +1,3 @@
-import RestaurantCard from "./RestaurantCard";
-
 const CartContent = ({ name, cloudinaryImageId, price }) => {
   return (
     <div className="p-3 m-4 bg-amber-50 shadow-md w-56 h-auto">
