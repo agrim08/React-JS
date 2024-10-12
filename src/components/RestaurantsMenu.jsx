@@ -62,24 +62,27 @@ const RestaurantMenu = () => {
             {restaurantData?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map(
               (item) =>
                 item?.card?.card?.itemCards?.[0]?.card?.info?.name?.length ? (
-                  <li key={item?.card?.card?.itemCards?.[0]?.card?.info?.id}>
-                    {`${
-                      item?.card?.card?.itemCards?.[0]?.card?.info?.name
-                    }  - ₹ ${
-                      item?.card?.card?.itemCards?.[0]?.card?.info?.price / 100
-                    } `}{" "}
-                    -{" "}
-                    <img
-                      src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/"
-                      alt=""
-                    />
+                  <>
+                    <li key={item?.card?.card?.itemCards?.[0]?.card?.info?.id}>
+                      {`${
+                        item?.card?.card?.itemCards?.[0]?.card?.info?.name
+                      }  - ₹ ${
+                        item?.card?.card?.itemCards?.[0]?.card?.info?.price /
+                        100
+                      } `}{" "}
+                      -{" "}
+                      <img
+                        src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/"
+                        alt=""
+                      />
+                    </li>
                     <button
                       className="ml-5 p-2 border border-orange-500 bg-orange-400 text-white rounded-lg mt-1 gap-2 items-end"
                       onClick={() => addFoodItem(item)}
                     >
                       Add Item
                     </button>
-                  </li>
+                  </>
                 ) : (
                   <></>
                 )
