@@ -36,6 +36,7 @@ import store from "./utils/store";
 //* Upon on demand loading, react suspend the rendering
 const Instamart = lazy(() => import("./components/Instamart"));
 const About = lazy(() => import("./components/About"));
+const Cart = lazy(() => import("./components/Cart"));
 
 const AppLayout = () => {
   const [user, setUser] = useState({
@@ -117,6 +118,11 @@ const appRouter = createBrowserRouter([
             <Instamart />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+        errorElement: <Error />,
       },
     ],
   },

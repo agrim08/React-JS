@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 import Login from "./Login";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -10,6 +11,8 @@ const HeaderComponent = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const isOnline = useOnline();
   const { user } = useContext(UserContext);
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <div className="bg-pink-100 shadow-md h-auto">
@@ -31,9 +34,9 @@ const HeaderComponent = () => {
             <Link to="/instamart">
               <li>Instamart</li>
             </Link>
-            <li>
-              <a href="/">Cart</a>
-            </li>
+            <Link to="/cart">
+              <li>Cart - {cartItems.length}</li>
+            </Link>
             <li className="justify-self-end">
               {isLoggedIn ? (
                 <button onClick={() => setIsLoggedIn(false)}>Logout</button>
