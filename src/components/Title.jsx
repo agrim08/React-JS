@@ -7,7 +7,12 @@ const Title = () => {
   return (
     <div className="flex items-center justify-items-centerter">
       <a href="/">
-        <img className="h-20 w-22 px-3 py-2 mr-5" src={Logo} alt="logo" />
+        <img
+          data-testid="logo"
+          className="h-20 w-22 px-3 py-2 mr-5"
+          src={Logo}
+          alt="logo"
+        />
       </a>
       <h3 className="px-4 py-2 m-2 font-semibold text-orange-500">
         Welcome, {user.name} 😊

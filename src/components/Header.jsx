@@ -35,9 +35,9 @@ const HeaderComponent = () => {
               <li>Instamart</li>
             </Link>
             <Link to="/cart">
-              <li>Cart - {cartItems.length}</li>
+              <li data-testid="cart-status">Cart - {cartItems.length}</li>
             </Link>
-            <li className="justify-self-end">
+            <span className="justify-self-end">
               {isLoggedIn ? (
                 <button onClick={() => setIsLoggedIn(false)}>Logout</button>
               ) : (
@@ -49,12 +49,14 @@ const HeaderComponent = () => {
                   Login
                 </button>
               )}
-            </li>
+            </span>
           </ul>
         </div>
       </div>
       <div className="flex justify-end px-10">
-        <h3>{isOnline ? "Online ✅" : "Offline ❌"}</h3>
+        <h3 data-testid="online-status">
+          {isOnline ? "Online ✅" : "Offline ❌"}
+        </h3>
       </div>
     </div>
   );
