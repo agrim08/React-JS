@@ -4,6 +4,7 @@ import Loader from "./Loader";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/Utils";
 import UserContext from "../utils/UserContext";
+import { act } from "@testing-library/react";
 
 function Body() {
   //* searchText is a local state variable
@@ -20,8 +21,10 @@ function Body() {
 
   async function getRestaurants() {
     try {
-      const data = await fetch(
-        "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65420&lng=77.23730&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      const data = act(
+        await fetch(
+          "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65420&lng=77.23730&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+        )
       );
       if (!data.ok) {
         throw new Error("Network response was not ok");
@@ -80,6 +83,7 @@ function Body() {
           }}
         />
         <button
+          data-testid="search-btn"
           className="w-20 h-9 ml-2 p-2 text-white rounded-full bg-violet-500 hover:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
           type="submit"
           onClick={handleSearch}

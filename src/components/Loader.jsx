@@ -1,6 +1,6 @@
 const Loader = () => {
   return (
-    <div className="flex flex-row flex-wrap" data-testid="Loader">
+    <div className="flex flex-row flex-wrap" data-testid="shimmer">
       {Array(20)
         .fill("")
         .map((e, index) => (
