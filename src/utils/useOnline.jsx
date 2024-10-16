@@ -11,13 +11,10 @@ const useOnline = () => {
       setIsOnline(true);
     };
 
-    window.addEventListener("online", () => {
-      setIsOnline(true);
-    });
-    window.addEventListener("offline", () => {
-      setIsOnline(false);
-    });
+    window.addEventListener("online", handleOnline);
+    window.addEventListener("offline", handleOflline);
 
+    //* CLEAN-UP FUNCTION
     return () => {
       window.removeEventListener("online", handleOnline);
       window.removeEventListener("offline", handleOflline);
