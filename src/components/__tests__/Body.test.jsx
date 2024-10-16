@@ -7,11 +7,13 @@ import restaurantsData from "../../mocks/DummyRestaurant";
 import "@testing-library/jest-dom";
 
 // Mock global fetch
-global.fetch = jest.fn(() =>
+global.fetch = jest.fn(() => {
   Promise.resolve({
-    json: () => Promise.resolve(restaurantsData),
-  })
-);
+    json: () => {
+      Promise.resolve(restaurantsData);
+    },
+  });
+});
 
 test("Shimmer should load first and then restaurants should load", async () => {
   // Render the component wrapped with Redux provider and StaticRouter
@@ -24,12 +26,10 @@ test("Shimmer should load first and then restaurants should load", async () => {
   );
 
   // Assert shimmer is in the document initially (before data is loaded)
+  await waitFor(() =>
+    expect(screen.getByTestId("search-btn")).toBeInTheDocument()
+  );
   const shimmer = screen.getByTestId("shimmer");
-  // Assuming shimmer has 20 children
-  const search = screen.getByTestId("search-btn");
-
-  // Wait for the search button (or any other element) to appear after data loads
-  await waitFor(() => expect(search).toBeInTheDocument());
-
-  // After loading, the shimmer should no longer be in the document
+  expect(shimmer.children.length).toBe(20);
+  console.log(shimmer);
 });

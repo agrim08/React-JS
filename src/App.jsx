@@ -11,9 +11,9 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Shimmer from "./components/Loader";
 import useOnline from "./utils/useOnline";
 import UserContext from "./utils/UserContext";
-// import Login from "./components/Login";
 import { Provider } from "react-redux";
 import store from "./utils/store";
+import Title from "./components/Title";
 
 /**
  * Header
