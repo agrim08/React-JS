@@ -35,7 +35,9 @@ const Section = ({ title, discription, isVisible, setIsVisible, value }) => {
           >
             Hide
           </button>
-          <p className="p-2 m-2 text-black">{discription}</p>
+          <p className="p-2 m-2 text-black border-opacity-25 border-orange-300 shadow-lg">
+            {discription}
+          </p>
         </>
       ) : (
         <button
@@ -56,7 +58,7 @@ const Instamart = () => {
   console.log(visibleSection);
 
   return (
-    <div className="shadow-purple-300">
+    <div className="shadow shadow-purple-300">
       <h1 className="text-orange-500 text-4xl font-extrabold mt-3 m-3 ml-5">
         InstaMart
       </h1>
