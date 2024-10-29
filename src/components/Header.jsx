@@ -12,7 +12,6 @@ const HeaderComponent = () => {
   const isOnline = useOnline();
   // const { user } = useContext(UserContext);
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
 
   return (
     <div className="bg-pink-100 shadow-md h-auto">

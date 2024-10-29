@@ -60,17 +60,18 @@ const RestaurantMenu = () => {
           <h1 className="font-bold text-orange-400 text-xl">Menu</h1>
           <ul className="m-2 p-2 text-center border border-purple-300 flex flex-col items-start">
             {restaurantData?.data?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map(
-              (item) =>
+              (item, index) =>
                 item?.card?.card?.itemCards?.[0]?.card?.info?.name?.length ? (
-                  <>
-                    <li key={item?.card?.card?.itemCards?.[0]?.card?.info?.id}>
+                  <div
+                    key={`${item?.card?.card?.itemCards?.[0]?.card?.info?.id}-${index}`}
+                  >
+                    <li>
                       {`${
                         item?.card?.card?.itemCards?.[0]?.card?.info?.name
                       }  - ₹ ${
                         item?.card?.card?.itemCards?.[0]?.card?.info?.price /
                         100
-                      } `}{" "}
-                      -{" "}
+                      } `}
                       <img
                         src="https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/"
                         alt=""
@@ -82,7 +83,7 @@ const RestaurantMenu = () => {
                     >
                       Add Item
                     </button>
-                  </>
+                  </div>
                 ) : (
                   <></>
                 )

@@ -71,7 +71,7 @@ function Body() {
     <>
       <div className="search-container p-5 bg-pink-100 shadow-md mb-4 mt-0">
         <input
-          className="shadow-purple-100 focus:bg-green-100 focus:border-pink-800 p-2 rounded-md"
+          className="shadow-purple-100 focus:bg-green-100 p-2 rounded-md select: outline-pink-800"
           type="text"
           placeholder="Search"
           value={searchText}
@@ -89,7 +89,7 @@ function Body() {
           Search
         </button>
         <input
-          className="text-gray-300 pl-3 text-sm h-9 border border-pink-300 rounded-full ml-5 mb-1 "
+          className="text-gray-500 pl-3 text-sm h-9 border border-pink-300 rounded-full ml-5 mb-1 select: outline-none "
           type="text"
           value={user.name}
           onChange={(e) => {
@@ -101,7 +101,7 @@ function Body() {
           }}
         />
         <input
-          className="text-gray-300 pl-3 text-sm h-9 border border-pink-300 rounded-full ml-5 mb-1 "
+          className="text-gray-500 pl-3 text-sm h-9 border border-pink-300 rounded-full ml-5 mb-1 select: outline-none"
           type="text"
           value={user.email}
           onChange={(e) => {

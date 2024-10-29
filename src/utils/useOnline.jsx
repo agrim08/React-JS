@@ -8,7 +8,7 @@ const useOnline = () => {
       setIsOnline(true);
     };
     const handleOflline = () => {
-      setIsOnline(true);
+      setIsOnline(false);
     };
 
     window.addEventListener("online", handleOnline);
