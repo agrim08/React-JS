@@ -18,10 +18,8 @@ const HeaderComponent = () => {
   return (
     <header className="bg-white shadow-md w-full fixed top-0 z-50">
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Logo and Title */}
         <Title />
 
-        {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
           <Link
             to="/home"
@@ -56,7 +54,6 @@ const HeaderComponent = () => {
           </Link>
         </nav>
 
-        {/* Action Buttons & Hamburger Menu */}
         <div className="flex items-center space-x-4">
           <button
             onClick={() => setIsLoggedIn(!isLoggedIn)}
@@ -73,7 +70,6 @@ const HeaderComponent = () => {
             {isOnline ? "Online ✅" : "Offline ❌"}
           </span>
 
-          {/* Hamburger button: Visible only on mobile */}
           <button className="md:hidden ml-4" onClick={toggleMenu}>
             {isMenuOpen ? <CloseIcon size={24} /> : <MenuIcon size={24} />}
           </button>

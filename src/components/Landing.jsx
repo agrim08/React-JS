@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  Clock,
-  UtensilsCrossed,
-  Truck,
-  Star,
-  ChefHat,
-  Phone,
-  MapPin,
-  ArrowRight,
-} from "lucide-react";
+import { Clock, UtensilsCrossed, Star, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const LandingPage = () => {
@@ -53,7 +44,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Features Section */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -106,7 +96,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Popular Dishes Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
@@ -159,7 +148,6 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="relative py-20 overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center bg-fixed opacity-20"

@@ -83,7 +83,7 @@ const RestaurantMenu = () => {
                           {itemInfo?.name}
                         </h3>
                         <p className="text-gray-600 text-sm mb-2">
-                          ₹{" "}
+                          ₹
                           {itemInfo?.price
                             ? (itemInfo?.price / 100).toFixed(2)
                             : "N/A"}

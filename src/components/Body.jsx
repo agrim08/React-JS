@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useEffect, useContext } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Loader from "./Loader";
@@ -14,7 +12,6 @@ function Body() {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const { user, setUser } = useContext(UserContext);
 
   useEffect(() => {
     getRestaurants();
@@ -38,7 +35,7 @@ function Body() {
         setAllRestaurants(restaurants);
         setFilteredRestaurants(restaurants);
       } else {
-        throw new Error("No restaurants found in the API response");
+        throw new Error("No restaurants found in your location");
       }
     } catch (error) {
       console.error("Error fetching restaurants:", error);
@@ -74,7 +71,6 @@ function Body() {
 
   return (
     <main className="container mx-auto px-4 pt-24 pb-16">
-      {/* Search Section */}
       <section className="mb-12">
         <form
           onSubmit={handleSearch}
@@ -97,7 +93,6 @@ function Body() {
         </form>
       </section>
 
-      {/* Restaurants Grid */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {filteredRestaurants.map((restaurant) => (
           <Link
