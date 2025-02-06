@@ -6,22 +6,23 @@ import { Link } from "react-router-dom";
 const Title = () => {
   const { user } = useContext(UserContext);
   return (
-    <div className="flex items-center justify-items-centerter">
+    <div className="flex items-center">
       <Link to="/">
         <img
           data-testid="logo"
-          className="h-20 w-22 px-3 py-2 mr-5"
+          className="md:h-16 md:w-16 sm:h-10 sm:w-10 rounded-full"
           src={Logo}
           alt="logo"
         />
       </Link>
-      <h3 className="px-4 py-2 m-2 font-semibold text-orange-500">
-        Welcome, {user.name} 😊
-      </h3>
-      <h3 className="px-4 py-2 m-2 font-semibold text-black">
-        Your mail, {user.email}
-      </h3>
+      <div className="ml-4 hidden md:block">
+        <h3 className="text-lg font-semibold text-gray-800 ">
+          Welcome, {user.name} 😊
+        </h3>
+        <p className="text-sm text-gray-600">Your mail, {user.email}</p>
+      </div>
     </div>
   );
 };
+
 export default Title;

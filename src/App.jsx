@@ -14,6 +14,7 @@ import UserContext from "./utils/UserContext";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 import Title from "./components/Title";
+import LandingPage from "./components/Landing";
 
 /**
  * Header
@@ -101,6 +102,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/",
+        element: <LandingPage />,
+        errorElement: <Error />,
+      },
+      {
+        path: "/home",
         element: <Body />,
         errorElement: <Error />,
       },

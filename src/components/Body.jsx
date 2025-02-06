@@ -4,11 +4,9 @@ import Loader from "./Loader";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/Utils";
 import UserContext from "../utils/UserContext";
-import { act } from "@testing-library/react";
 
 function Body() {
-  //* searchText is a local state variable
-  const [searchText, setSearchText] = useState(""); //* to create state variable
+  const [searchText, setSearchText] = useState("");
   const [allRestaurants, setAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [error, setError] = useState(null);
@@ -21,16 +19,15 @@ function Body() {
 
   async function getRestaurants() {
     try {
-      const data = await fetch(
+      const response = await fetch(
         "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.65420&lng=77.23730&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
       );
-      if (!data.ok) {
+      if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      const jsonData = await data.json();
-      console.log("API Response:", jsonData); // Log the entire response
+      const jsonData = await response.json();
+      console.log("API Response:", jsonData);
 
-      // Check if the expected data structure exists
       const restaurants = jsonData?.data?.cards?.find(
         (card) => card?.card?.card?.gridElements?.infoWithStyle?.restaurants
       )?.card?.card?.gridElements?.infoWithStyle?.restaurants;
@@ -50,8 +47,9 @@ function Body() {
   }
 
   if (error) {
-    return <div>Error: {error}</div>;
+    return <div className="text-center mt-10 text-red-600">Error: {error}</div>;
   }
+
   if (isLoading) {
     return <Loader />;
   }
@@ -61,71 +59,49 @@ function Body() {
     const data = filterData(searchText, allRestaurants);
     setFilteredRestaurants(data);
   }
+
   if (!allRestaurants) return null;
+  if (filteredRestaurants?.length === 0)
+    return <h1 className="text-center mt-10 text-xl">No restaurant found</h1>;
 
-  if (filteredRestaurants?.length === 0) return <h1>No restaurant found</h1>;
-
-  return allRestaurants?.length === 0 ? (
-    <Loader />
-  ) : (
-    <>
-      <div className="search-container p-5 bg-pink-100 shadow-md mb-4 mt-0">
-        <input
-          className="shadow-purple-100 focus:bg-green-100 p-2 rounded-md select: outline-pink-800"
-          type="text"
-          placeholder="Search"
-          value={searchText}
-          onChange={(e) => {
-            e.preventDefault();
-            setSearchText(e.target.value);
-          }}
-        />
-        <button
-          data-testid="search-btn"
-          className="w-20 h-9 ml-2 p-2 text-white rounded-full bg-violet-500 hover:bg-violet-700 active:bg-violet-700 focus:outline-none focus:ring focus:ring-violet-300"
-          type="submit"
-          onClick={handleSearch}
+  return (
+    <div className="container mx-auto px-4 pt-24 pb-10">
+      {/* Search and User Update Section */}
+      <div className="mb-8 bg-gray-50 p-5 rounded-lg shadow-sm flex flex-col sm:flex-row items-center gap-4">
+        <form
+          onSubmit={handleSearch}
+          className="flex items-center w-full sm:w-auto"
         >
-          Search
-        </button>
-        <input
-          className="text-gray-500 pl-3 text-sm h-9 border border-pink-300 rounded-full ml-5 mb-1 select: outline-none "
-          type="text"
-          value={user.name}
-          onChange={(e) => {
-            e.preventDefault();
-            setUser({
-              ...user,
-              name: e.target.value,
-            });
-          }}
-        />
-        <input
-          className="text-gray-500 pl-3 text-sm h-9 border border-pink-300 rounded-full ml-5 mb-1 select: outline-none"
-          type="text"
-          value={user.email}
-          onChange={(e) => {
-            e.preventDefault();
-            setUser({
-              ...user,
-              email: e.target.value,
-            });
-          }}
-        />
+          <input
+            type="text"
+            placeholder="Search restaurants..."
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            className="flex-grow border border-gray-300 rounded-l-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+          <button
+            type="submit"
+            data-testid="search-btn"
+            className="bg-orange-500 hover:bg-orange-700 text-white px-4 py-2 rounded-r-md transition duration-300"
+          >
+            Search
+          </button>
+        </form>
       </div>
-      <div className="flex flex-wrap">
-        {filteredRestaurants?.map((restaurant) => {
-          return (
-            <Link
-              to={`/restaurant/${restaurant?.info?.id}`}
-              key={restaurant?.info?.id}
-            >
-              <RestaurantCard {...restaurant?.info} />
-            </Link>
-          );
-        })}
+
+      {/* Restaurants Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {filteredRestaurants.map((restaurant) => (
+          <Link
+            key={restaurant?.info?.id}
+            to={`/restaurant/${restaurant?.info?.id}`}
+          >
+            <RestaurantCard {...restaurant?.info} />
+          </Link>
+        ))}
       </div>
-    </>
+    </div>
   );
 }
+
 export default Body;

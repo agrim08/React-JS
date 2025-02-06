@@ -1,135 +1,234 @@
-// import { Link } from "react-router-dom";
-import Contact from "./Contact";
+import React from "react";
+import Logo from "../assets/Logo.jpg";
+import {
+  Meta,
+  Twitter,
+  Instagram,
+  Youtube,
+  MapPin,
+  Phone,
+  Mail,
+  Globe,
+  ChefHat,
+  ExternalLink,
+  Linkedin,
+  Copy,
+} from "lucide-react";
+import { Link } from "react-router-dom";
 
-const Footer = () => {
+function Footer() {
   return (
-    <>
-      <footer className="sticky bg-purple-200 pt-8 pb-6">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap text-left lg:text-left">
-            <div className="w-full lg:w-6/12 px-4">
-              <h4 className="text-3xl fonat-semibold text-black">
-                Let's keep in touch!
-              </h4>
-              <h5 className="text-lg mt-0 mb-2 text-black">
-                Find us on any of these platforms, we respond 1-2 business days.
-              </h5>
-              <div className="mt-6 lg:mb-0 mb-6">
-                <button
-                  className="bg-white text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <i className="fab fa-twitter"></i>
-                </button>
-                <button
-                  className="bg-white text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <i className="fab fa-facebook-square"></i>
-                </button>
-                <button
-                  className="bg-white text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <i className="fab fa-dribbble"></i>
-                </button>
-                <button
-                  className="bg-white text-black shadow-lg font-normal h-10 w-10 items-center justify-center align-center rounded-full outline-none focus:outline-none mr-2"
-                  type="button"
-                >
-                  <i className="fab fa-github"></i>
-                </button>
+    <footer className="bg-gray-900 text-gray-300">
+      <div className="container mx-auto px-4 pt-16 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="space-y-6">
+            <div className="flex items-center gap-3 space-x-4">
+              <div className=" bg-orange-500 rounded-full flex items-center justify-center">
+                <Link to="/">
+                  <img
+                    data-testid="logo"
+                    className="md:h-16 md:w-16 sm:h-10 sm:w-10 rounded-full"
+                    src={Logo}
+                    alt="logo"
+                  />
+                </Link>
               </div>
+              <h3 className="text-2xl font-bold text-white">Food Mania</h3>
             </div>
-            <div className="w-full lg:w-6/12 px-4">
-              <div className="flex flex-wrap items-top mb-6">
-                <div className="w-full lg:w-4/12 px-4 ml-auto">
-                  <span className="block uppercase text-black text-sm font-semibold mb-2">
-                    Useful Links
-                  </span>
-                  <ul className="list-unstyled">
-                    <li>
-                      <a
-                        className="text-black hover:text-blue font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/presentation?ref=njs-profile"
-                      >
-                        About Us
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-black hover:text-blue font-semibold block pb-2 text-sm"
-                        href="https://medium.com/@agrimgupta0805"
-                      >
-                        Blog
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-black hover:text-blue font-semibold block pb-2 text-sm"
-                        href="https://github.com/agrim08"
-                      >
-                        Github
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-black hover:text-blue font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/bootstrap-themes/free?ref=njs-profile"
-                      >
-                        Free Products
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="w-full lg:w-4/12 px-4">
-                  <span className="block uppercase text-black text-sm font-semibold mb-2">
-                    Other Resources
-                  </span>
-                  <ul className="list-unstyled">
-                    <li>
-                      <a
-                        className="text-black hover:text-black font-semibold block pb-2 text-sm"
-                        href="https://github.com/creativetimofficial/notus-js/blob/main/LICENSE.md?ref=njs-profile"
-                      >
-                        MIT License
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-black hover:text-blue font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/terms?ref=njs-profile"
-                      >
-                        Terms &amp; Conditions
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        className="text-black hover:text-blue font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/privacy?ref=njs-profile"
-                      >
-                        Privacy Policy
-                      </a>
-                    </li>
-                    <li className="text-black hover:text-blue font-semibold block pb-2 text-sm">
-                      <a href="">Contact Us</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <p className="text-gray-400 leading-relaxed">
+              "People who love to eat are always the best people."
+              <span className="block mt-2 text-sm italic">— Julia Child</span>
+            </p>
+            <div className="flex gap-4">
+              <Link
+                to="https://www.linkedin.com/in/agrim-gupta08"
+                target="_blank"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors duration-300"
+              >
+                <Linkedin className="w-5 h-5" />
+              </Link>
+              <Link
+                to="https://x.com/AgrimGupta0805"
+                target="_blank"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors duration-300"
+              >
+                <Twitter className="w-5 h-5" />
+              </Link>
+              <Link
+                to="https://www.instagram.com/_agrim_0008/"
+                target="_blank"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors duration-300"
+              >
+                <Instagram className="w-5 h-5" />
+              </Link>
+              <Link
+                to="https://medium.com/@agrimgupta0805"
+                target="_blank"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors duration-300"
+              >
+                <Copy className="w-5 h-5" />
+              </Link>
             </div>
           </div>
-          <hr className="my-6 borderbltext-black" />
-          <div className="flex flex-wrap items-center md:justify-between justify-center">
-            <div className="w-full md:w-4/12 px-4 mx-auto text-center">
-              <div className="text-sm text-blue-500 font-semibold py-1">
-                Copyright © <span id="get-current-year">2024</span>
-              </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-6">
+              Quick Links
+            </h4>
+            <ul className="space-y-4">
+              <li>
+                <Link
+                  to="/about"
+                  className="flex items-center gap-2 hover:text-orange-500 transition-colors duration-300"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/home"
+                  className="flex items-center gap-2 hover:text-orange-500 transition-colors duration-300"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Our Menu
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/home"
+                  className="flex items-center gap-2 hover:text-orange-500 transition-colors duration-300"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Special Offers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/home"
+                  className="flex items-center gap-2 hover:text-orange-500 transition-colors duration-300"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Delivery Areas
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-6">Support</h4>
+            <ul className="space-y-4">
+              <li>
+                <Link
+                  to="/home"
+                  className="flex items-center gap-2 hover:text-orange-500 transition-colors duration-300"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Help Center
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/home"
+                  className="flex items-center gap-2 hover:text-orange-500 transition-colors duration-300"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/home"
+                  className="flex items-center gap-2 hover:text-orange-500 transition-colors duration-300"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/home"
+                  className="flex items-center gap-2 hover:text-orange-500 transition-colors duration-300"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-6">
+              Contact Us
+            </h4>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-orange-500" />
+                </div>
+                <span>123 Sector 62, Noida</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-orange-500" />
+                </div>
+                <span>+91 7302420801</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-orange-500" />
+                </div>
+                <span>agrimgupta8105@gmail.com</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center">
+                  <Globe className="w-5 h-5 text-orange-500" />
+                </div>
+                <span>
+                  <Link
+                    to={"https://agrim-portfolio.vercel.app/"}
+                    className="hover:text-orange-500"
+                  >
+                    Website
+                  </Link>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="border-t border-gray-800 mt-12 pt-8">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-400">
+              © {new Date().getFullYear()} Food Mania. All rights reserved.
+            </p>
+            <div className="flex gap-6">
+              <Link
+                to="/home"
+                className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
+              >
+                Terms
+              </Link>
+              <Link
+                to="/home"
+                className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
+              >
+                Privacy
+              </Link>
+              <Link
+                to="/home"
+                className="text-gray-400 hover:text-orange-500 transition-colors duration-300"
+              >
+                Cookies
+              </Link>
             </div>
           </div>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   );
-};
+}
+
 export default Footer;

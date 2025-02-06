@@ -1,5 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../utils/cartSlice";
+import CartContent from "./CartContent";
+import { useEffect } from "react";
 
 // import CartContent from "./CartContent";
 
@@ -9,6 +11,14 @@ const Cart = () => {
   const handleclearCart = () => {
     dispatch(clearCart());
   };
+
+  console.log(cartItems);
+
+  useEffect(() => {
+    if (!cartItems) {
+      return;
+    }
+  }, [cartItems]);
 
   return (
     <div className="h-auto">
@@ -21,7 +31,7 @@ const Cart = () => {
       >
         Clear Cart
       </button>
-      {/* <CartContent {...cartItems[0]} /> */}
+      <CartContent {...cartItems[0]} />
     </div>
   );
 };
