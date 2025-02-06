@@ -1,9 +1,12 @@
+"use client";
+
 import { useState, useEffect, useContext } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Loader from "./Loader";
 import { Link } from "react-router-dom";
 import { filterData } from "../utils/Utils";
 import UserContext from "../utils/UserContext";
+import { Search } from "lucide-react";
 
 function Body() {
   const [searchText, setSearchText] = useState("");
@@ -26,7 +29,6 @@ function Body() {
         throw new Error("Network response was not ok");
       }
       const jsonData = await response.json();
-      console.log("API Response:", jsonData);
 
       const restaurants = jsonData?.data?.cards?.find(
         (card) => card?.card?.card?.gridElements?.infoWithStyle?.restaurants
@@ -46,61 +48,68 @@ function Body() {
     }
   }
 
-  if (error) {
-    return <div className="text-center mt-10 text-red-600">Error: {error}</div>;
-  }
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
   function handleSearch(e) {
     e.preventDefault();
     const data = filterData(searchText, allRestaurants);
     setFilteredRestaurants(data);
   }
 
+  if (error) {
+    return (
+      <div className="text-center mt-24 text-red-600 text-xl">{error}</div>
+    );
+  }
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
   if (!allRestaurants) return null;
   if (filteredRestaurants?.length === 0)
-    return <h1 className="text-center mt-10 text-xl">No restaurant found</h1>;
+    return (
+      <h1 className="text-center mt-24 text-2xl font-semibold">
+        No restaurants found
+      </h1>
+    );
 
   return (
-    <div className="container mx-auto px-4 pt-24 pb-10">
-      {/* Search and User Update Section */}
-      <div className="mb-8 bg-gray-50 p-5 rounded-lg shadow-sm flex flex-col sm:flex-row items-center gap-4">
+    <main className="container mx-auto px-4 pt-24 pb-16">
+      {/* Search Section */}
+      <section className="mb-12">
         <form
           onSubmit={handleSearch}
-          className="flex items-center w-full sm:w-auto"
+          className="max-w-2xl mx-auto flex items-center bg-white rounded-full shadow-md overflow-hidden"
         >
           <input
             type="text"
             placeholder="Search restaurants..."
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-            className="flex-grow border border-gray-300 rounded-l-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="flex-grow px-6 py-4 focus:outline-none text-gray-700"
           />
           <button
             type="submit"
             data-testid="search-btn"
-            className="bg-orange-500 hover:bg-orange-700 text-white px-4 py-2 rounded-r-md transition duration-300"
+            className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-4 transition duration-300"
           >
-            Search
+            <Search size={20} />
           </button>
         </form>
-      </div>
+      </section>
 
       {/* Restaurants Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         {filteredRestaurants.map((restaurant) => (
           <Link
             key={restaurant?.info?.id}
             to={`/restaurant/${restaurant?.info?.id}`}
+            className="transform hover:scale-105 transition-transform duration-300"
           >
             <RestaurantCard {...restaurant?.info} />
           </Link>
         ))}
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }
 

@@ -1,19 +1,24 @@
 import { useEffect } from "react";
+import { ImageCdn } from "../Data/ImageCdn";
 
-const CartContent = ({ name, cloudinaryImageId, price }) => {
+const CartContent = ({ itemInfo }) => {
   useEffect(() => {
-    if (!cloudinaryImageId) {
-      return;
-    }
-  }, [cloudinaryImageId]);
+    if (!itemInfo) return;
+  }, [itemInfo]);
+
   return (
-    <div className="p-3 m-4 bg-amber-50 shadow-md w-56 h-auto">
-      <img
-        className="h-60 w-60"
-        src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${cloudinaryImageId}`}
-      />
-      <h4 className=" font-bold">{name}</h4>
-      <h4 className=""> {price}</h4>
+    <div className="bg-white rounded-lg shadow p-6 flex flex-col items-center transition hover:shadow-lg">
+      {itemInfo?.imageId && (
+        <img
+          src={`${ImageCdn}${itemInfo?.imageId}`}
+          alt={itemInfo?.name}
+          className="w-24 h-24 object-cover rounded-full mb-4"
+        />
+      )}
+      <h3 className="text-xl font-bold text-gray-800 mb-2">{itemInfo?.name}</h3>
+      <p className="text-gray-600">
+        ₹ {itemInfo?.price ? (itemInfo?.price / 100).toFixed(2) : "N/A"}
+      </p>
     </div>
   );
 };

@@ -55,7 +55,6 @@ const Section = ({ title, discription, isVisible, setIsVisible, value }) => {
 
 const Instamart = () => {
   const [visibleSection, setVisibleSection] = useState("");
-  console.log(visibleSection);
 
   return (
     <div className="shadow shadow-purple-300">
